@@ -2,12 +2,13 @@ import React from 'react';
 import { Star } from 'lucide-react';
 
 export const MovieCard = ({ movie, onClick }) => {
-  const posterUrl = movie.poster_path 
+  // Handle both API response formats
+  const posterUrl = movie.poster || (movie.poster_path 
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-    : 'https://via.placeholder.com/500x750?text=No+Image';
+    : 'https://via.placeholder.com/500x750?text=No+Image');
   
   const releaseYear = movie.release_date ? new Date(movie.release_date).getFullYear() : 'N/A';
-  const rating = movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A';
+  const rating = (movie.rating || movie.vote_average) ? (movie.rating || movie.vote_average).toFixed(1) : 'N/A';
 
   return (
     <div 
