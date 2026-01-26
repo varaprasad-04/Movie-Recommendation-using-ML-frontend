@@ -171,7 +171,7 @@ export const Home = () => {
                 <button
                   type="button"
                   onClick={clearSearch}
-                  className="absolute right-20 top-1/2 transform -translate-y-1/2 p-1 hover:bg-gray-700 rounded-full transition-colors"
+                  className="absolute right-20 top-1/2 transform -translate-y-1/2 p-1 hover:bg-gray-700 rounded-full transition-colors z-10"
                   data-testid="clear-search-btn"
                 >
                   <X className="w-5 h-5 text-gray-400" />
