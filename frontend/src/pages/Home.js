@@ -261,12 +261,24 @@ export const Home = () => {
             <h2 className="text-2xl font-bold text-white mb-6">Recommended Movies</h2>
             <div className="relative">
               <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide snap-x snap-mandatory">
-                {recommendations.map((movie) => (
-                  <div key={movie.id} className="flex-shrink-0 w-48 snap-start">
-                    <MovieCard 
-                      movie={movie} 
-                      onClick={() => handleRecommendationClick(movie)}
-                    />
+                {recommendations.map((movieName, index) => (
+                  <div key={index} className="flex-shrink-0 w-48 snap-start">
+                    <div 
+                      className="group cursor-pointer transition-all duration-300 hover:scale-105"
+                      onClick={() => handleRecommendationClick(movieName)}
+                      data-testid="recommendation-card"
+                    >
+                      <div className="relative overflow-hidden rounded-lg shadow-lg bg-[#2a2a2a] h-[300px] flex items-center justify-center">
+                        <div className="p-4 text-center">
+                          <h3 className="text-white font-semibold text-base line-clamp-3">
+                            {movieName}
+                          </h3>
+                        </div>
+                        <div className="absolute inset-0 bg-red-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                          <span className="text-white font-medium">Click to view</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
