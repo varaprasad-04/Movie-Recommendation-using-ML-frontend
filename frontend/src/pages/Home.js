@@ -54,7 +54,7 @@ export const Home = () => {
     setRecommendations([]);
     try {
       const data = await fetchMoviesByGenre(genre.id);
-      setMovies(data.results || data);
+      setMovies(data.movies || data.results || []);
       setPageTitle(`${genre.name} Movies`);
     } catch (error) {
       toast.error(`Failed to load ${genre.name} movies`);
