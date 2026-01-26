@@ -27,8 +27,8 @@ export const Home = () => {
     setLoading(true);
     try {
       const data = await fetchPopularMovies();
-      setMovies(data.results || data);
-      setPageTitle('Popular Movies');
+      setMovies(data.movies || data.results || []);
+      setPageTitle('Popular Action Movies');
       setSearchedMovie(null);
       setRecommendations([]);
     } catch (error) {
