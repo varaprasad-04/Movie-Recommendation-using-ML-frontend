@@ -2,12 +2,14 @@ import React from 'react';
 import { Star, X } from 'lucide-react';
 
 export const MovieDetails = ({ movie, onClose }) => {
-  const posterUrl = movie.poster_path 
+  // Handle both API response formats
+  const posterUrl = movie.poster || (movie.poster_path 
     ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
-    : 'https://via.placeholder.com/500x750?text=No+Image';
+    : 'https://via.placeholder.com/500x750?text=No+Image');
   
   const releaseYear = movie.release_date ? new Date(movie.release_date).getFullYear() : 'N/A';
-  const rating = movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A';
+  const rating = (movie.rating || movie.vote_average) ? (movie.rating || movie.vote_average).toFixed(1) : 'N/A';
+  const overview = movie.description || movie.overview;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={onClose}>
@@ -39,18 +41,22 @@ export const MovieDetails = ({ movie, onClose }) => {
             </h2>
             
             <div className="flex items-center gap-4 mb-4">
-              <span className="text-gray-400" data-testid="movie-details-year">{releaseYear}</span>
-              <div className="flex items-center gap-1">
-                <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-                <span className="text-white font-medium" data-testid="movie-details-rating">{rating}</span>
-              </div>
+              {releaseYear !== 'N/A' && (
+                <span className="text-gray-400" data-testid="movie-details-year">{releaseYear}</span>
+              )}
+              {rating !== 'N/A' && (
+                <div className="flex items-center gap-1">
+                  <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                  <span className="text-white font-medium" data-testid="movie-details-rating">{rating}</span>
+                </div>
+              )}
             </div>
             
-            {movie.overview && (
+            {overview && (
               <div className="mb-4">
                 <h3 className="text-xl font-semibold text-white mb-2">Overview</h3>
                 <p className="text-gray-300 leading-relaxed" data-testid="movie-details-overview">
-                  {movie.overview}
+                  {overview}
                 </p>
               </div>
             )}
