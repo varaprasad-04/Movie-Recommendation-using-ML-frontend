@@ -179,7 +179,7 @@ export const Home = () => {
               )}
               <button
                 type="submit"
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-full transition-colors"
+                className="absolute right-2 top-1/2 transform -translate-y-1/2 px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-full transition-colors z-10"
                 data-testid="search-btn"
               >
                 Search
