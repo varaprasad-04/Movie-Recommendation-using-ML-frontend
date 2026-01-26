@@ -100,11 +100,19 @@ export const Home = () => {
   };
 
   const handleRecommendationClick = (movieName) => {
+    if (!movieName || movieName.trim() === '') {
+      toast.error('Invalid movie name');
+      return;
+    }
     setSearchQuery(movieName);
     handleSearchWithQuery(movieName);
   };
 
   const handleSearchWithQuery = async (query) => {
+    if (!query || query.trim() === '') {
+      return;
+    }
+    
     setLoading(true);
     try {
       const data = await searchMovie(query);
@@ -122,9 +130,12 @@ export const Home = () => {
         setPageTitle(`Search Results for "${query}"`);
         setMovies([]);
         setSelectedGenre(null);
+      } else {
+        toast.error(`No results found for "${query}"`);
       }
     } catch (error) {
-      toast.error('Failed to search movie');
+      toast.error(`Failed to search for "${query}". Please try another movie.`);
+      console.error('Search error:', error);
     } finally {
       setLoading(false);
     }
