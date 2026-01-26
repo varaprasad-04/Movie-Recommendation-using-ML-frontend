@@ -4,12 +4,13 @@ const BASE_URL = 'https://movie-recommendation-using-ml-1.onrender.com';
 
 const api = axios.create({
   baseURL: BASE_URL,
-  timeout: 10000,
+  timeout: 15000,
 });
 
 export const fetchPopularMovies = async () => {
   try {
-    const response = await api.get('/popular');
+    // Use Action genre (28) for popular movies since no /popular endpoint exists
+    const response = await api.get('/movies-by-genre?genre_id=28');
     return response.data;
   } catch (error) {
     console.error('Error fetching popular movies:', error);
