@@ -74,8 +74,17 @@ export const Home = () => {
     try {
       const data = await searchMovie(searchQuery);
       
-      if (data.movie) {
-        setSearchedMovie(data.movie);
+      if (data.input_movie) {
+        // Create movie object from search result
+        const movie = {
+          title: data.input_movie,
+          poster_path: data.poster ? data.poster.replace('https://image.tmdb.org/t/p/w500', '') : null,
+          poster: data.poster,
+          overview: data.description,
+        };
+        
+        setSearchedMovie(movie);
+        // Recommendations are just movie names, we'll need to search for them
         setRecommendations(data.recommendations || []);
         setPageTitle(`Search Results for "${searchQuery}"`);
         setMovies([]);
@@ -84,7 +93,7 @@ export const Home = () => {
         toast.error('Movie not found');
       }
     } catch (error) {
-      toast.error('Failed to search movie');
+      toast.error('Failed to search movie. Please try another movie name.');
     } finally {
       setLoading(false);
     }
