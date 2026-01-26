@@ -99,9 +99,9 @@ export const Home = () => {
     }
   };
 
-  const handleRecommendationClick = (movie) => {
-    setSearchQuery(movie.title || movie.name);
-    handleSearchWithQuery(movie.title || movie.name);
+  const handleRecommendationClick = (movieName) => {
+    setSearchQuery(movieName);
+    handleSearchWithQuery(movieName);
   };
 
   const handleSearchWithQuery = async (query) => {
@@ -109,8 +109,15 @@ export const Home = () => {
     try {
       const data = await searchMovie(query);
       
-      if (data.movie) {
-        setSearchedMovie(data.movie);
+      if (data.input_movie) {
+        const movie = {
+          title: data.input_movie,
+          poster_path: data.poster ? data.poster.replace('https://image.tmdb.org/t/p/w500', '') : null,
+          poster: data.poster,
+          overview: data.description,
+        };
+        
+        setSearchedMovie(movie);
         setRecommendations(data.recommendations || []);
         setPageTitle(`Search Results for "${query}"`);
         setMovies([]);
