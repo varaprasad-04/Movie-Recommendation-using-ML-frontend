@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a1a"/>
+      <stop offset="100%" style="stop-color:#0a0a0a"/>
+    </linearGradient>
+    <linearGradient id="reel" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e53e3e"/>
+      <stop offset="50%" style="stop-color:#dc2626"/>
+      <stop offset="100%" style="stop-color:#b91c1c"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="192" height="192" rx="36" fill="url(#bg)"/>
+  
+  <!-- Film reel base -->
+  <circle cx="96" cy="96" r="72" fill="url(#reel)" stroke="#ffffff" stroke-width="3"/>
+  
+  <!-- Inner circle -->
+  <circle cx="96" cy="96" r="48" fill="#1a1a1a" stroke="#ffffff" stroke-width="2"/>
+  
+  <!-- Film holes around the reel -->
+  <circle cx="96" cy="36" r="7" fill="#1a1a1a"/>
+  <circle cx="147" cy="72" r="7" fill="#1a1a1a"/>
+  <circle cx="147" cy="120" r="7" fill="#1a1a1a"/>
+  <circle cx="96" cy="156" r="7" fill="#1a1a1a"/>
+  <circle cx="45" cy="120" r="7" fill="#1a1a1a"/>
+  <circle cx="45" cy="72" r="7" fill="#1a1a1a"/>
+  
+  <!-- Center details -->
+  <circle cx="96" cy="96" r="18" fill="#2a2a2a" stroke="#e53e3e" stroke-width="3"/>
+  <circle cx="96" cy="96" r="6" fill="#e53e3e"/>
+  
+  <!-- Film strip elements -->
+  <rect x="72" y="84" width="48" height="6" fill="#ffffff" opacity="0.7"/>
+  <rect x="72" y="99" width="48" height="6" fill="#ffffff" opacity="0.7"/>
+</svg>
