@@ -16,7 +16,7 @@
       "dest": "/static/$1"
     },
     {
-      "src": "/(.*\\.(js|css|ico|png|jpg|jpeg|gif|svg|woff|woff2))",
+      "src": "/(.*\\.(js|css|ico|png|jpg|jpeg|gif|svg|woff|woff2|json|txt))",
       "dest": "/$1"
     },
     {
@@ -26,5 +26,7 @@
   ],
   "env": {
     "NODE_ENV": "production"
-  }
+  },
+  "cleanUrls": true,
+  "trailingSlash": false
 }

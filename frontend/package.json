@@ -59,7 +59,7 @@
     "start": "craco start",
     "build": "craco build",
     "test": "craco test",
-    "vercel-build": "craco build"
+    "vercel-build": "npm run build"
   },
   "browserslist": {
     "production": [
