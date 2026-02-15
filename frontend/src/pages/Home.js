@@ -4,6 +4,7 @@ import { Header } from "../components/Header";
 import { MovieCard } from "../components/MovieCard";
 import { MovieDetails } from "../components/MovieDetails";
 import { Loader } from "../components/Loader";
+import { Footer } from "../components/Footer";
 import {
   fetchPopularMovies,
   fetchGenres,
@@ -381,12 +382,16 @@ export const Home = () => {
       </main>
 
       {/* Movie Details Modal */}
+      {/* Movie Details Modal */}
       {selectedMovie && (
         <MovieDetails
           movie={selectedMovie}
           onClose={() => setSelectedMovie(null)}
         />
       )}
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };
