@@ -12,7 +12,7 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!static|favicon|manifest).*)",
+      "source": "/((?!static/|favicon|manifest|.*\\.).*)",
       "destination": "/index.html"
     }
   ],

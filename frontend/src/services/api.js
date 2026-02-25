@@ -4,8 +4,30 @@ const BASE_URL = "https://movie-recommendation-using-ml-1.onrender.com";
 
 const api = axios.create({
   baseURL: BASE_URL,
-  timeout: 15000,
+  timeout: 30000, // Increased timeout for slow API
 });
+
+// Add request interceptor for debugging
+api.interceptors.request.use((request) => {
+  console.log("Starting Request:", request.url);
+  return request;
+});
+
+// Add response interceptor for debugging
+api.interceptors.response.use(
+  (response) => {
+    console.log("Response:", response.status, response.data);
+    return response;
+  },
+  (error) => {
+    console.error(
+      "API Error:",
+      error.response?.status,
+      error.response?.data || error.message,
+    );
+    return Promise.reject(error);
+  },
+);
 
 export const fetchPopularMovies = async () => {
   try {
@@ -24,7 +46,17 @@ export const fetchGenres = async () => {
     return response.data;
   } catch (error) {
     console.error("Error fetching genres:", error);
-    throw error;
+    // Return fallback genres if API fails
+    return {
+      genres: [
+        { id: 28, name: "Action" },
+        { id: 35, name: "Comedy" },
+        { id: 18, name: "Drama" },
+        { id: 27, name: "Horror" },
+        { id: 10749, name: "Romance" },
+        { id: 878, name: "Sci-Fi" },
+      ],
+    };
   }
 };
 
